@@ -1,0 +1,20 @@
+.mbtn {
+    border: 1px solid #202124 !important;
+    padding: 4px 8px;
+    margin: 0 4px;
+    transition: .5s;
+    border-radius: 5px;
+}
+
+.mbtn:hover {
+    background-color: #202124;
+    color: #fff;
+}
+
+.del {
+    border: 1px solid #ff0000 !important;
+}
+
+.del:hover {
+    background-color: #ff0000;
+}

@@ -5,15 +5,16 @@ import './App.css';
 import Header from './Header';
 import Footer from './Footer';
 
-import List from './List';
+import List from './List/';
 import Barcode from './Barcode/';
+import CameraMark from './CameraMark';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             list: {
-                unmarked: ['eggs'],
+                unmarked: ['eggs', 'Apples', 'Oranges', 'Chicken', 'Pizza'],
                 marked: []
             }
         };
@@ -22,22 +23,35 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Header/>
-                <div className="container">
-                    <Switch>
-                        <Route path='/' exact 
-                            render={(props) => 
-                                <List {...props} updater={this.setState} appState={this.state} />
-                            } 
-                        />
-                        <Route path='/barcode'
-                            render={(props) => 
-                                <Barcode {...props} updater={this.setState} appState={this.state} />
-                            }
-                        />
-                    </Switch>
-                </div>
-                <Footer/>
+                <Switch>
+                    <Route path='/' exact 
+                        render={(props) => (
+                            <div>
+                                <Header/>
+                                <div id="body" className="container">
+                                    <List {...props} updater={this.setState} appState={this.state} />
+                                </div>
+                                <Footer/>
+                            </div>
+                        )} 
+                    />
+                    <Route path='/barcode'
+                        render={(props) => 
+                            <div>
+                                <Header/>
+                                <div id="body" className="container">
+                                    <Barcode {...props} updater={this.setState} appState={this.state} />
+                                </div>
+                                <Footer/>
+                            </div>
+                        }
+                    />
+                    <Route path='/CameraMark/:item'
+                        render={(props) => (
+                            <CameraMark {...props} updater={this.setState} appState={this.state} />
+                        )}
+                    />
+                </Switch>
             </div>
         );
     }
