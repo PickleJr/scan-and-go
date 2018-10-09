@@ -1,0 +1,35 @@
+footer {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    background-color: #202124;
+    color: #fff;
+    font-size: 1.1rem;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.5);
+}
+
+footer .row {
+    margin-bottom: 0;
+}
+
+#b-nav > a {
+    color: #fff;
+    border-top: 4px solid #202124;
+    padding: 8px 0 4px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+#b-nav > a:hover {
+    background-color: #616161;
+    border-top: 4px solid #b0bec5;
+}
+
+#b-nav > .active {
+    border-top: 4px solid #fff !important;
+}
+
+#b-nav .nav {
+    display: flex;
+    flex-direction: column;
+}
