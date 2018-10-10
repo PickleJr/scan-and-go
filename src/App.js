@@ -15,18 +15,45 @@ class App extends Component {
         this.state = {
             list: {
                 unmarked: ['eggs', 'Apples', 'Oranges', 'Chicken', 'Pizza'],
-                marked: []
+                marked: [
+                    {
+                        hasCode: false,
+                        name: 'Salad'
+                    },
+                    {
+                        hasCode: true,
+                        code: '037000455363',
+                        name: 'Fabreeze'
+                    }
+                ]
             }
         };
 
         this.addUnmarkedItem = this.addUnmarkedItem.bind(this);
         this.removeUnmarkedItem = this.removeUnmarkedItem.bind(this);
+        this.markComplete = this.markComplete.bind(this);
     }
 
     addUnmarkedItem(item) {
         let newState = this.state;
         newState.list.unmarked.unshift(item);
         this.setState(newState);
+    }
+
+    markComplete(item) {
+        let unmarked = this.state.list.unmarked;
+        let marked = this.state.list.marked;
+        marked.unshift(item);
+        for(let i = 0; i < unmarked.length; i++) {
+            if(unmarked[i] === item.name) {
+                unmarked.splice(i, 1);
+                break;
+            }
+        }
+        this.setState({list: {
+            unmarked: unmarked,
+            marked: marked,
+        }});
     }
 
     removeUnmarkedItem(item) {
@@ -49,7 +76,7 @@ class App extends Component {
                             <div>
                                 <Header/>
                                 <div id="body" className="container">
-                                    <List {...props} adder={this.addUnmarkedItem} remover={this.removeUnmarkedItem} list={this.state.list.unmarked} />
+                                    <List {...props} adder={this.addUnmarkedItem} remover={this.removeUnmarkedItem} list={this.state.list} />
                                 </div>
                                 <Footer/>
                             </div>
@@ -71,7 +98,7 @@ class App extends Component {
                             <div>
                                 <Header/>
                                 <div className="container">
-                                    <CameraMark {...props} updater={this.setState} appState={this.state} />
+                                    <CameraMark {...props}  marker={this.markComplete}/>
                                 </div>
                             </div>
                         )}

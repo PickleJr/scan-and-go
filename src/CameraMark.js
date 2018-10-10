@@ -1,9 +1,70 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Quagga from 'quagga';
 
 import './CameraMark.css';
 
 class CameraMark extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            counter: {}
+        };
+
+        this.scanDetect = this.scanDetect.bind(this);
+        this.skipItem = this.skipItem.bind(this);
+        this.checkState = this.checkState.bind(this);
+        this.pushSkip = this.pushSkip.bind(this);
+    }
+
+    componentWillUnmount() {
+        console.log("Ahh!");
+    }
+
+    skipItem() {
+        this.setState({counter: {}}, this.pushSkip);
+    }
+
+    pushSkip() {
+        let item = {
+            hasCode: false,
+            name: this.props.match.params.item
+        };
+        this.props.marker(item);
+        Quagga.stop();
+        this.props.history.push('/');
+    }
+
+    scanDetect(result) {
+        let code = result.codeResult.code;
+        let counter = this.state.counter;
+
+        //Barcode not 100% acurate.
+        //Count number of time each number is scanned.
+        //If a particular code is scanned 7 times it probably is the correct code.
+        counter[code] = counter[code] || 0;
+        counter[code]++;
+        this.setState({counter: counter}, this.checkState);
+    }
+
+    checkState() {
+        let counter = this.state.counter;
+        for(let num in counter) {
+            if(counter[num] > 6) {
+                let item = {
+                    hasCode: true,
+                    code: num,
+                    name: this.props.match.params.item
+                };
+                this.props.marker(item);
+                Quagga.stop();
+                this.props.history.push('/');
+                break;
+            }
+        }
+    }
+
     componentDidMount() {
         Quagga.init({
             inputStream: {
@@ -24,19 +85,22 @@ class CameraMark extends Component {
                 console.log(err);
                 return;
             }
-            console.log("Initialization finished. Ready to start");
             Quagga.start();
         });
-        Quagga.onDetected(function(result) {
-            console.log("Barcode found!");
-            console.log(result.codeResult.code);
-        });
+        Quagga.onDetected(this.scanDetect);
     }
     render() {
         return (
             <div>
-                <div>I am still here!</div>
                 <div id="scanner"></div>
+                <div id="controls">
+                    <Link to="/" className="waves-effect waves-light btn">
+                        <i className="fas fa-long-arrow-alt-left"></i>
+                    </Link>
+                    <button onClick={this.skipItem} className="waves-effect waves-light btn">
+                        Skip
+                    </button>
+                </div>
             </div>
         );
     }

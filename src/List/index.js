@@ -13,7 +13,7 @@ class List extends Component {
     }
 
     getUnmarkedItems() {
-        let unmarked = this.props.list;
+        let unmarked = this.props.list.unmarked;
         let html = [];
         for(var i = 0; i < unmarked.length; i++) {
             html.push((
