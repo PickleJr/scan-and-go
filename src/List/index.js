@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';
 
-import Remove from './Remove';
+import URemove from './URemove';
+import MRemove from './MRemove';
 import Add from './Add';
 
 class List extends Component {
@@ -10,18 +11,40 @@ class List extends Component {
         super(props);
 
         this.getUnmarkedItems = this.getUnmarkedItems.bind(this);
+        this.getMarkedItems = this.getMarkedItems.bind(this);
+    }
+
+    getMarkedItems() {
+        let marked = this.props.list.marked;
+        let html = [];
+        for(let i = 0; i < marked.length; i++) {
+            html.push((
+                <li key={i.toString()} className="collection-item">
+                    <div>
+                        <span>{marked[i].name}</span>
+                        <div className="item-actions">
+                            <MRemove remover={this.props.mRemover} item={marked[i]} indexKey={i}/>
+                            <button onClick={() => this.props.unmarker(marked[i])}>
+                                <i className="far fa-check-square"></i>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            ));
+        }
+        return html;
     }
 
     getUnmarkedItems() {
         let unmarked = this.props.list.unmarked;
         let html = [];
-        for(var i = 0; i < unmarked.length; i++) {
+        for(let i = 0; i < unmarked.length; i++) {
             html.push((
                 <li key={i.toString()} className="collection-item">
                     <div>
                         <span>{unmarked[i]}</span>
                         <div className="item-actions">
-                            <Remove remover={this.props.remover} item={unmarked[i]} indexKey={i}/>
+                            <URemove remover={this.props.uRemover} item={unmarked[i]} indexKey={i}/>
                             <Link to={"/CameraMark/" + unmarked[i]}>
                                 <i className="far fa-square"></i>
                             </Link>
@@ -44,6 +67,9 @@ class List extends Component {
                     {this.getUnmarkedItems()}
                 </ul>
                 <h2>Completed</h2>
+                <ul className="collection">
+                    {this.getMarkedItems()}
+                </ul>
             </div>
         );
     }

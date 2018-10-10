@@ -3,7 +3,7 @@ import M from 'materialize-css';
 
 import './Remove.css';
 
-class Remove extends Component {
+class URemove extends Component {
     constructor(props) {
         super(props);
         this.id = "modal-" + this.props.item + "-" + this.props.indexKey;
@@ -42,4 +42,4 @@ class Remove extends Component {
     }
 }
 
-export default Remove;
+export default URemove;
