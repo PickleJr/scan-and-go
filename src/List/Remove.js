@@ -7,10 +7,19 @@ class Remove extends Component {
     constructor(props) {
         super(props);
         this.id = "modal-" + this.props.item + "-" + this.props.indexKey;
+
+        this.removeItem = this.removeItem.bind(this);
     }
 
     componentDidMount() {
         this.mInstance = M.Modal.init(document.querySelector("#" + this.id), {});
+    }
+
+    removeItem() {
+        if(this.mInstance.isOpen) {
+            this.mInstance.close();
+        }
+        this.props.remover(this.props.item);
     }
 
     render() {
@@ -25,7 +34,7 @@ class Remove extends Component {
                     </div>
                     <div className="modal-footer">
                         <button className="modal-close mbtn">Cancel</button>
-                        <button className="modal-close mbtn del">Delete</button>
+                        <button onClick={this.removeItem} className="mbtn del">Delete</button>
                     </div>
                 </div>
             </div>

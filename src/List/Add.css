@@ -1,0 +1,8 @@
+#add_row {
+    display: flex;
+    align-items: center;
+}
+
+.fill {
+    width: 100%;
+}

@@ -18,6 +18,26 @@ class App extends Component {
                 marked: []
             }
         };
+
+        this.addUnmarkedItem = this.addUnmarkedItem.bind(this);
+        this.removeUnmarkedItem = this.removeUnmarkedItem.bind(this);
+    }
+
+    addUnmarkedItem(item) {
+        let newState = this.state;
+        newState.list.unmarked.unshift(item);
+        this.setState(newState);
+    }
+
+    removeUnmarkedItem(item) {
+        let newState = this.state;
+        for(var i = 0; i < newState.list.unmarked.length; i++) {
+            if(newState.list.unmarked[i] === item) {
+                newState.list.unmarked.splice(i, 1);
+                this.setState(newState);
+                break;
+            }
+        }
     }
 
     render() {
@@ -29,7 +49,7 @@ class App extends Component {
                             <div>
                                 <Header/>
                                 <div id="body" className="container">
-                                    <List {...props} updater={this.setState} appState={this.state} />
+                                    <List {...props} adder={this.addUnmarkedItem} remover={this.removeUnmarkedItem} list={this.state.list.unmarked} />
                                 </div>
                                 <Footer/>
                             </div>

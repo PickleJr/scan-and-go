@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './index.css';
 
 import Remove from './Remove';
+import Add from './Add';
 
 class List extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class List extends Component {
     }
 
     getUnmarkedItems() {
-        let unmarked = this.props.appState.list.unmarked;
+        let unmarked = this.props.list;
         let html = [];
         for(var i = 0; i < unmarked.length; i++) {
             html.push((
@@ -20,7 +21,7 @@ class List extends Component {
                     <div>
                         <span>{unmarked[i]}</span>
                         <div className="item-actions">
-                            <Remove item={unmarked[i]} indexKey={i}/>
+                            <Remove remover={this.props.remover} item={unmarked[i]} indexKey={i}/>
                             <Link to={"/CameraMark/" + unmarked[i]}>
                                 <i className="far fa-square"></i>
                             </Link>
@@ -38,6 +39,7 @@ class List extends Component {
                 <h1>Hello, World!</h1>
                 <p>{JSON.stringify(this.props)}</p>
                 <h2>List</h2>
+                <Add adder={this.props.adder}/>
                 <ul className="collection">
                     {this.getUnmarkedItems()}
                 </ul>
