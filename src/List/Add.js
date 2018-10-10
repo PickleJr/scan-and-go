@@ -30,7 +30,7 @@ class Add extends Component {
             <div id="add_row" className="row">
                 <div className="input-field col s10 m11">
                     <input id="add_item" value={this.state.value} onChange={this.handleChange} type="text" className="validate"/>
-                    <label for="add_item">Item</label>
+                    <label htmlFor="add_item">Item</label>
                 </div>
                 <div className="col s2 m1 no-padding">
                     <button onClick={this.addItem} className="fill waves-effect waves-light btn"><i className="fas fa-plus"></i></button>

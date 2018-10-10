@@ -68,7 +68,12 @@ class App extends Component {
                     />
                     <Route path='/CameraMark/:item'
                         render={(props) => (
-                            <CameraMark {...props} updater={this.setState} appState={this.state} />
+                            <div>
+                                <Header/>
+                                <div className="container">
+                                    <CameraMark {...props} updater={this.setState} appState={this.state} />
+                                </div>
+                            </div>
                         )}
                     />
                 </Switch>

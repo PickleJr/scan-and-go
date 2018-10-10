@@ -1,0 +1,8 @@
+#scanner {
+    padding-top: 16px;
+    text-align: center;
+}
+
+canvas.drawingBuffer {
+    display: none;
+}

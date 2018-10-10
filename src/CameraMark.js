@@ -1,36 +1,42 @@
 import React, { Component } from 'react';
 import Quagga from 'quagga';
 
+import './CameraMark.css';
+
 class CameraMark extends Component {
     componentDidMount() {
         Quagga.init({
-            locate: true,
             inputStream: {
                 name: 'Live',
                 type: 'LiveStream',
-                target: document.querySelector("#camera")
+                target: document.querySelector('#scanner'),
+                constraints: {
+                    facingMode: "environment"
+                }
+            },
+            decoder: {
+                readers: [
+                    "upc_reader",
+                ]
             }
         }, function(err) {
             if(err) {
                 console.log(err);
-                alert(err);
                 return;
             }
-            console.log("Init finished. Ready to start");
-            Quagga.onDetected(function(data) {
-                console.log("Data found!");
-                console.log(data);
-            });
+            console.log("Initialization finished. Ready to start");
             Quagga.start();
         });
+        Quagga.onDetected(function(result) {
+            console.log("Barcode found!");
+            console.log(result.codeResult.code);
+        });
     }
-
     render() {
         return (
             <div>
                 <div>I am still here!</div>
-                <div id="camera">
-                </div>
+                <div id="scanner"></div>
             </div>
         );
     }
