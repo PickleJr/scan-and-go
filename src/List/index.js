@@ -59,8 +59,6 @@ class List extends Component {
     render() {
         return (
             <div>
-                <h1>Hello, World!</h1>
-                <p>{JSON.stringify(this.props)}</p>
                 <h2>List</h2>
                 <Add adder={this.props.adder}/>
                 <ul className="collection">

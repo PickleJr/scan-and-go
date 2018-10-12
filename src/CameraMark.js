@@ -16,6 +16,7 @@ class CameraMark extends Component {
         this.skipItem = this.skipItem.bind(this);
         this.checkState = this.checkState.bind(this);
         this.pushSkip = this.pushSkip.bind(this);
+        this.goBack = this.goBack.bind(this);
     }
 
     skipItem() {
@@ -42,6 +43,11 @@ class CameraMark extends Component {
         counter[code] = counter[code] || 0;
         counter[code]++;
         this.setState({counter: counter}, this.checkState);
+    }
+
+    goBack() {
+        Quagga.stop();
+        this.props.history.push('/');
     }
 
     checkState() {
@@ -91,9 +97,9 @@ class CameraMark extends Component {
             <div>
                 <div id="scanner"></div>
                 <div id="controls">
-                    <Link to="/" className="waves-effect waves-light btn">
+                    <button onClick={this.goBack} className="waves-effect waves-light btn">
                         <i className="fas fa-long-arrow-alt-left"></i>
-                    </Link>
+                    </button>
                     <button onClick={this.skipItem} className="waves-effect waves-light btn">
                         Skip
                     </button>
