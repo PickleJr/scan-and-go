@@ -37,15 +37,15 @@ class Barcode extends Component {
     goNext(event) {
         let index = this.props.match.params.iIndex;
         let list = this.props.list;
-        if(event.target.name === "nexter") this.props.toggler(index);
+        if(event.target.name === "nexter" && !list[index].scanned) this.props.toggler(index);
 
         ++index;
         while(index >= 0 && index < list.length) {
             if(list[index].hasCode) {
-                this.props.history.push('/checkout' + index);
+                this.props.history.push('/checkout/' + index);
                 return
             }
-            --index;
+            ++index;
         }
         this.closer();
     }
