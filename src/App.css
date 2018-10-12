@@ -5,3 +5,7 @@
 .no-padding {
     padding: 0;
 }
+
+.circle {
+    border-radius: 50%;
+}

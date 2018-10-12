@@ -1,0 +1,56 @@
+#checkouter {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#checkout_controls {
+    width: 100%;;
+}
+
+#checkouter > * {
+    margin: 3rem 0;
+}
+
+.ich {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ich > * {
+    margin: 0 4px;
+}
+
+.circle_helper {
+    border: none;
+    background-color: black;
+    color: white;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    height: 52px;
+    width: 52px;
+    margin: none;
+    font-size: 42px;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.circle_helper:hover {
+    background-color: white;
+    color:black;
+}
+
+.borderer {
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 4px solid white;
+    transition: .5s;
+}
+
+.borderer.active {
+    border: 4px solid rgb(0,255,0);
+}

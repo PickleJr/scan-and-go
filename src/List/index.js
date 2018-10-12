@@ -21,7 +21,7 @@ class List extends Component {
             html.push((
                 <li key={i.toString()} className="collection-item">
                     <div>
-                        <span>{marked[i].name}</span>
+                        <span><s>{marked[i].name}</s></span>
                         <div className="item-actions">
                             <MRemove remover={this.props.mRemover} item={marked[i]} indexKey={i}/>
                             <button onClick={() => this.props.unmarker(marked[i])}>
@@ -45,7 +45,7 @@ class List extends Component {
                         <span>{unmarked[i]}</span>
                         <div className="item-actions">
                             <URemove remover={this.props.uRemover} item={unmarked[i]} indexKey={i}/>
-                            <Link to={"/CameraMark/" + unmarked[i]}>
+                            <Link to={"/camera-mark/" + unmarked[i]}>
                                 <i className="far fa-square"></i>
                             </Link>
                         </div>

@@ -24,7 +24,7 @@ class App extends Component {
                     {
                         hasCode: true,
                         code: '037000455363',
-                        scanned: false,
+                        scanned: true,
                         name: 'Fabreeze'
                     }
                 ]
@@ -36,6 +36,39 @@ class App extends Component {
         this.markComplete = this.markComplete.bind(this);
         this.removeMarkedItem = this.removeMarkedItem.bind(this);
         this.markUncomplete = this.markUncomplete.bind(this);
+        this.clearMarkedNoBarcode = this.clearMarkedNoBarcode.bind(this);
+        this.clearScannedBarcodes = this.clearScannedBarcodes.bind(this);
+        this.toggleScanned = this.toggleScanned.bind(this);
+    }
+
+    toggleScanned(index) {
+        let newState = this.state;
+        if(index < 0 || index >= newState.list.marked.length) return;
+        else if(!newState.list.marked[index].hasCode) return;
+
+        newState.list.marked[index].scanned = !newState.list.marked[index].scanned;
+        this.setState(newState);
+    }
+
+    clearMarkedNoBarcode() {
+        let newState = this.state;
+        for(let i = 0; i < newState.list.marked.length; i++) {
+            if(!newState.list.marked[i].hasCode) {
+                console.log(newState.list.marked);
+                newState.list.marked.splice(i--, 1);
+            }
+        }
+        this.setState(newState);
+    }
+
+    clearScannedBarcodes() {
+        let newState = this.state;
+        for(let i = 0; i < newState.list.marked.length; i++) {
+            if(newState.list.marked[i].hasCode && newState.list.marked[i].scanned) {
+                newState.list.marked.splice(i--, 1);
+            }
+        }
+        this.setState(newState);
     }
 
     addUnmarkedItem(item) {
@@ -120,9 +153,9 @@ class App extends Component {
                             </div>
                         )} 
                     />
-                    <Route path='/checkout/:item'
+                    <Route path='/checkout/:iIndex/'
                         render={(props) => 
-                            <Barcode {...props} list={this.state.list.marked} />
+                            <Barcode {...props} toggler={this.toggleScanned} list={this.state.list.marked} />
                         }
                     />
                     <Route path='/checkout'
@@ -130,18 +163,18 @@ class App extends Component {
                             <div>
                                 <Header/>
                                 <div id="body" className="container">
-                                    <Checkout {...props} list={this.state.list.marked} />
+                                    <Checkout {...props} clearOther={this.clearMarkedNoBarcode} clearScanned={this.clearScannedBarcodes} list={this.state.list.marked} />
                                 </div>
                                 <Footer/>
                             </div>
                         }
                     />
-                    <Route path='/CameraMark/:item'
+                    <Route path='/camera-mark/:item'
                         render={(props) => (
                             <div>
                                 <Header/>
                                 <div className="container">
-                                    <CameraMark {...props}  marker={this.markComplete}/>
+                                    <CameraMark {...props} marker={this.markComplete}/>
                                 </div>
                             </div>
                         )}

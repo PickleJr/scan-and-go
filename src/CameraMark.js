@@ -18,10 +18,6 @@ class CameraMark extends Component {
         this.pushSkip = this.pushSkip.bind(this);
     }
 
-    componentWillUnmount() {
-        console.log("Ahh!");
-    }
-
     skipItem() {
         this.setState({counter: {}}, this.pushSkip);
     }

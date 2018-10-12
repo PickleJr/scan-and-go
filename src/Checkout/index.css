@@ -1,6 +1,10 @@
-#flexy-checkout {
+.flexy-checkout {
     display: flex;
     flex-wrap: wrap;
+    align-items: stretch;
+}
+.flexy-checkout > * {
+    margin: 5px 15px;
 }
 
 .code-holder {
@@ -14,10 +18,22 @@
     border-radius: 10px;
 }
 
+.code-holder.no-code {
+    cursor: auto;
+}
+
 .code-holder.done {
     border: 4px solid #00ff00;
 }
 
 .code-holder:hover {
     border: 4px solid rgba(0,0,0,.25);
+}
+
+.bc-link {
+    color: black;
+}
+
+.clear-btn {
+    align-self: center;
 }
