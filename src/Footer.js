@@ -12,9 +12,9 @@ class Footer extends Component {
                             <i className="fas fa-clipboard-list fa-lg"></i>
                             <span>List</span>
                         </NavLink>
-                        <NavLink to='/barcode' className="nav col s6">
+                        <NavLink to='/checkout' className="nav col s6">
                             <i className="fas fa-barcode fa-lg"></i>
-                            <span>Barcode</span>
+                            <span>Checkout</span>
                         </NavLink>
                     </div>
                 </div>

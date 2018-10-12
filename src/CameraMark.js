@@ -55,6 +55,7 @@ class CameraMark extends Component {
                 let item = {
                     hasCode: true,
                     code: num,
+                    scanned: false,
                     name: this.props.match.params.item
                 };
                 this.props.marker(item);

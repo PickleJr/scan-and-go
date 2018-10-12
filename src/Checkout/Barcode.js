@@ -5,6 +5,7 @@ class Barcode extends Component {
         return (
             <div>
                 <h1>Hello, Barcode!</h1>
+                <p>{JSON.stringify(this.props)}</p>
             </div>
         );
     }

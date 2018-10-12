@@ -6,7 +6,8 @@ import Header from './Header';
 import Footer from './Footer';
 
 import List from './List/';
-import Barcode from './Barcode/';
+import Barcode from './Checkout/Barcode';
+import Checkout from './Checkout/';
 import CameraMark from './CameraMark';
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
                     {
                         hasCode: true,
                         code: '037000455363',
+                        scanned: false,
                         name: 'Fabreeze'
                     }
                 ]
@@ -118,12 +120,17 @@ class App extends Component {
                             </div>
                         )} 
                     />
-                    <Route path='/barcode'
+                    <Route path='/checkout/:item'
+                        render={(props) => 
+                            <Barcode {...props} list={this.state.list.marked} />
+                        }
+                    />
+                    <Route path='/checkout'
                         render={(props) => 
                             <div>
                                 <Header/>
                                 <div id="body" className="container">
-                                    <Barcode {...props} updater={this.setState} appState={this.state} />
+                                    <Checkout {...props} list={this.state.list.marked} />
                                 </div>
                                 <Footer/>
                             </div>
