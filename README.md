@@ -11,7 +11,7 @@ This app is fully functional so long as you don't close the page (In other words
 This application utilizes the device camera and a server based routing system. Meaning (at this point in time) to utilize the app, you must view the
 application on "localhost" - not just static files. To do that, either run `npm start` or `npm build` and use a customer server application to host the generated files.
 
-##FUTURE TODOS:
+## FUTURE TODOS:
 * Provide user feedback in camera mode.
 * Create app manifest.
 * Create custom service worker.
