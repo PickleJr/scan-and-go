@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
+import db from './db';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -36,6 +37,7 @@ class App extends Component {
                 ]
             }
         };
+        this.db = db;
 
         this.addUnmarkedItem = this.addUnmarkedItem.bind(this);
         this.removeUnmarkedItem = this.removeUnmarkedItem.bind(this);
