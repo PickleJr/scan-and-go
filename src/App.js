@@ -47,6 +47,48 @@ class App extends Component {
         this.clearMarkedNoBarcode = this.clearMarkedNoBarcode.bind(this);
         this.clearScannedBarcodes = this.clearScannedBarcodes.bind(this);
         this.toggleScanned = this.toggleScanned.bind(this);
+        this.checkDb = this.checkDb.bind(this);
+    }
+
+    async checkDb() {
+        let isSame = true;
+        //check if unmarked is the same
+        let unmarked = await this.db.get('unmarked');
+        if(unmarked.length !== this.state.list.unmarked.length) isSame = false;
+        else 
+            for(let i = 0; i < unmarked.length; i++) {
+                if(unmarked[i] !== this.state.list.unmarked[i]) {
+                    isSame = false;
+                    break;
+                }
+            }
+
+        //check if marked is the same
+        let marked = await this.db.get('marked');
+        if(marked.length !== this.state.list.marked.length) isSame = false;
+        else {
+            for(let i = 0; i < marked.length; i++) {
+                for(let key in marked[i]) {
+                    if(!(key in this.state.list.marked[i])) {
+                        isSame = false;
+                        break;
+                    } else {
+                        if(marked[key] !== this.state.list.marked[key]) {
+                            isSame = false;
+                            break;
+                        }
+                    }
+                }
+                if(!isSame) break;
+            }
+        }
+
+        if(!isSame) {
+            let newState = this.state;
+            newState.list.marked = marked;
+            newState.list.unmarked = unmarked;
+            this.setState(newState);
+        }
     }
 
     toggleScanned(index) {
@@ -140,6 +182,7 @@ class App extends Component {
     }
 
     render() {
+        this.checkDb();
         return (
             <div className="App">
                 <Switch>
