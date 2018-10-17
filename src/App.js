@@ -48,6 +48,25 @@ class App extends Component {
         this.clearScannedBarcodes = this.clearScannedBarcodes.bind(this);
         this.toggleScanned = this.toggleScanned.bind(this);
         this.checkDb = this.checkDb.bind(this);
+        this.saveSetState = this.saveSetState.bind(this);
+    }
+
+    componentDidMount() {
+        this.checkDb();
+    }
+
+    componentDidUpdate() {
+        this.checkDb();
+    }
+
+    async saveSetState(newState) {
+        newState.list = newState.list || {};
+        newState.list.unmarked = newState.list.unmarked || [];
+        newState.list.marked = newState.list.marked || [];
+
+        await this.db.set('unmarked', newState.list.unmarked);
+        await this.db.set('marked', newState.list.marked);
+        this.setState(newState);
     }
 
     async checkDb() {
@@ -87,7 +106,7 @@ class App extends Component {
             let newState = this.state;
             newState.list.marked = marked;
             newState.list.unmarked = unmarked;
-            this.setState(newState);
+            this.saveSetState(newState);
         }
     }
 
@@ -97,7 +116,7 @@ class App extends Component {
         else if(!newState.list.marked[index].hasCode) return;
 
         newState.list.marked[index].scanned = !newState.list.marked[index].scanned;
-        this.setState(newState);
+        this.saveSetState(newState);
     }
 
     clearMarkedNoBarcode() {
@@ -108,7 +127,7 @@ class App extends Component {
                 newState.list.marked.splice(i--, 1);
             }
         }
-        this.setState(newState);
+        this.saveSetState(newState);
     }
 
     clearScannedBarcodes() {
@@ -118,13 +137,13 @@ class App extends Component {
                 newState.list.marked.splice(i--, 1);
             }
         }
-        this.setState(newState);
+        this.saveSetState(newState);
     }
 
     addUnmarkedItem(item) {
         let newState = this.state;
         newState.list.unmarked.unshift(item);
-        this.setState(newState);
+        this.saveSetState(newState);
     }
 
     markUncomplete(item) {
@@ -137,7 +156,7 @@ class App extends Component {
                 break;
             }
         }
-        this.setState({list: {
+        this.saveSetState({list: {
             unmarked: unmarked,
             marked: marked
         }});
@@ -153,7 +172,7 @@ class App extends Component {
                 break;
             }
         }
-        this.setState({list: {
+        this.saveSetState({list: {
             unmarked: unmarked,
             marked: marked,
         }});
@@ -164,7 +183,7 @@ class App extends Component {
         for(let i = 0; i < newState.list.marked.length; i++) {
             if(newState.list.marked[i].name === item.name) {
                 newState.list.marked.splice(i, 1);
-                this.setState(newState);
+                this.saveSetState(newState);
                 break;
             }
         }
@@ -175,14 +194,13 @@ class App extends Component {
         for(let i = 0; i < newState.list.unmarked.length; i++) {
             if(newState.list.unmarked[i] === item) {
                 newState.list.unmarked.splice(i, 1);
-                this.setState(newState);
+                this.saveSetState(newState);
                 break;
             }
         }
     }
 
     render() {
-        this.checkDb();
         return (
             <div className="App">
                 <Switch>
