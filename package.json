@@ -1,0 +1,20 @@
+{
+  "name": "scan-and-go",
+  "description": "A PWA Shopping list with barcode features",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PickleJr/scan-and-go.git"
+  },
+  "author": "Taylor Gonzalez",
+  "bugs": {
+    "url": "https://github.com/PickleJr/scan-and-go/issues"
+  },
+  "homepage": "https://github.com/PickleJr/scan-and-go#readme"
+}
