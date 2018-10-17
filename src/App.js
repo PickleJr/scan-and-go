@@ -16,25 +16,8 @@ class App extends Component {
         super(props);
         this.state = {
             list: {
-                unmarked: ['eggs', 'Apples', 'Oranges', 'Chicken', 'Pizza'],
-                marked: [
-                    {
-                        hasCode: true,
-                        code: '085227607003',
-                        scanned: false,
-                        name: 'Stamps'
-                    },
-                    {
-                        hasCode: false,
-                        name: 'Salad'
-                    },
-                    {
-                        hasCode: true,
-                        code: '037000455363',
-                        scanned: false,
-                        name: 'Fabreeze'
-                    }
-                ]
+                unmarked: [],
+                marked: []
             }
         };
         this.db = db;
