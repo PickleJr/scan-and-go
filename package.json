@@ -2,7 +2,8 @@
   "name": "scan-and-go",
   "description": "A PWA Shopping list with barcode features",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "force-ssl-heroku": "^1.0.2"
   },
   "devDependencies": {},
   "scripts": {
