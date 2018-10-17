@@ -8,5 +8,5 @@ module.exports = {
     navigateFallback: 'index.html',
     swFilePath: './build/service-worker.js',
     stripPrefix: 'build/',
-    handleFetch: false
+    handleFetch: true
 };
