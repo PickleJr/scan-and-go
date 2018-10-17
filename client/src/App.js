@@ -56,6 +56,7 @@ class App extends Component {
         let isSame = true;
         //check if unmarked is the same
         let unmarked = await this.db.get('unmarked');
+        unmarked = unmarked || [];
         if(unmarked.length !== this.state.list.unmarked.length) isSame = false;
         else 
             for(let i = 0; i < unmarked.length; i++) {
@@ -67,6 +68,7 @@ class App extends Component {
 
         //check if marked is the same
         let marked = await this.db.get('marked');
+        marked = marked || [];
         if(marked.length !== this.state.list.marked.length) isSame = false;
         else {
             for(let i = 0; i < marked.length; i++) {
