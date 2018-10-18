@@ -69,13 +69,24 @@ class CameraMark extends Component {
     }
 
     componentDidMount() {
+        let qHeight = 480;
+        let qWidth = 640;
+        let qRatio = qWidth / qHeight;
+        let qTarget = document.querySelector('#scanner');
+        let divWidth = qTarget.parentElement.clientWidth;
+        if(divWidth < qWidth) {
+            qWidth = divWidth - 10;
+            qHeight = qWidth * qRatio;
+        }
         Quagga.init({
             inputStream: {
                 name: 'Live',
                 type: 'LiveStream',
-                target: document.querySelector('#scanner'),
+                target: qTarget,
                 constraints: {
-                    facingMode: "environment"
+                    facingMode: "environment",
+                    width: qWidth,
+                    height: qHeight,
                 }
             },
             decoder: {
