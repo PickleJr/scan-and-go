@@ -33,7 +33,7 @@ class Add extends Component {
                     <label htmlFor="add_item">Item</label>
                 </div>
                 <div className="col s2 m1 no-padding">
-                    <button onClick={this.addItem} className="fill waves-effect waves-light btn"><i className="fas fa-plus"></i></button>
+                    <button aria-label="Add item" onClick={this.addItem} className="fill waves-effect waves-light btn"><i className="fas fa-plus"></i></button>
                 </div>
             </div>
         );

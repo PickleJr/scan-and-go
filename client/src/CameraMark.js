@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Quagga from 'quagga';
 
 import './CameraMark.css';
@@ -110,10 +109,10 @@ class CameraMark extends Component {
             <div>
                 <div id="scanner"></div>
                 <div id="controls">
-                    <button onClick={this.goBack} className="waves-effect waves-light btn">
+                    <button aria-label="Go back" onClick={this.goBack} className="waves-effect waves-light btn">
                         <i className="fas fa-long-arrow-alt-left"></i>
                     </button>
-                    <button onClick={this.skipItem} className="waves-effect waves-light btn">
+                    <button aria-label="Skip scanning of this item" onClick={this.skipItem} className="waves-effect waves-light btn">
                         Skip
                     </button>
                 </div>

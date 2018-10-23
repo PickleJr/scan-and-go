@@ -24,7 +24,7 @@ class List extends Component {
                         <span><s>{marked[i].name}</s></span>
                         <div className="item-actions">
                             <MRemove remover={this.props.mRemover} item={marked[i]} indexKey={i}/>
-                            <button onClick={() => this.props.unmarker(marked[i])}>
+                            <button aria-label="Mark item as incomplete" onClick={() => this.props.unmarker(marked[i])}>
                                 <i className="far fa-check-square"></i>
                             </button>
                         </div>

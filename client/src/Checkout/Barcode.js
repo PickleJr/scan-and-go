@@ -27,7 +27,7 @@ class Barcode extends Component {
         if(!item.scanned) return
         else return (
             <div className="row">
-                <button onClick={() => this.props.toggler(this.props.match.params.iIndex)} className="waves-effect waves-light btn grey darken-2">
+                <button aria-label="Mark item as not scanned" onClick={() => this.props.toggler(this.props.match.params.iIndex)} className="waves-effect waves-light btn grey darken-2">
                     Mark not scanned
                 </button>
             </div>
@@ -89,7 +89,7 @@ class Barcode extends Component {
             return (
                 <div>
                     <div id="closer">
-                        <button onClick={this.closer} className="circle circle_helper">
+                        <button aria-label="Close window" onClick={this.closer} className="circle circle_helper">
                             <i className="fas fa-times i_circle_helper"></i>
                         </button>
                     </div>
@@ -108,13 +108,13 @@ class Barcode extends Component {
                             </div>
                         </div>
                         <div id="checkout_controls" className="row">
-                            <button onClick={this.goBack} className="col s3 m2 waves-effect waves-light btn red ich">
+                            <button aria-label="Go back to previous item" onClick={this.goBack} className="col s3 m2 waves-effect waves-light btn red ich">
                                 <i className="fas fa-chevron-left"></i> <span>Back</span>
                             </button>
-                            <button onClick={this.goNext} name="skipper" className="col s2 offset-s2 offset-m3 waves-effect waves-light btn orange darken-1">
+                            <button aria-label="Skip this item" onClick={this.goNext} name="skipper" className="col s2 offset-s2 offset-m3 waves-effect waves-light btn orange darken-1">
                                 Skip
                             </button>
-                            <button onClick={this.goNext} name="nexter" className="col s3  m2 offset-s2 offset-m3 waves-effect waves-light btn ich">
+                            <button aria-label="Mark item as complete and go to the next item" onClick={this.goNext} name="nexter" className="col s3  m2 offset-s2 offset-m3 waves-effect waves-light btn ich">
                                 <span>Next</span> <i className="fas fa-chevron-right"></i>
                             </button>
                         </div>

@@ -79,7 +79,7 @@ class Checkout extends Component {
         let htmlCodes = null;
         if(allScanned && allScannedHelper > 0) {
             htmlCodes = (
-                <button onClick={this.props.clearScanned} className="waves-effect waves-light btn clear-btn">
+                <button aria-label="Clear items that have barcodes" onClick={this.props.clearScanned} className="waves-effect waves-light btn clear-btn">
                     Clear from list
                 </button>
             );
@@ -88,7 +88,7 @@ class Checkout extends Component {
         let htmlNoCodes = null;
         if(anyNoCodes) {
             htmlNoCodes = (
-                <button onClick={this.props.clearOther} className="waves-effect waves-light btn clear-btn">
+                <button aria-label="Clear items that do not have barcodes" onClick={this.props.clearOther} className="waves-effect waves-light btn clear-btn">
                     Clear from list
                 </button>
             );

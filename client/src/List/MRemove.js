@@ -25,7 +25,7 @@ class MRemove extends Component {
     render() {
         return (
             <div>
-                <button className="modal-trigger" data-target={this.id}>
+                <button aria-label="Delete unmarked item" className="modal-trigger" data-target={this.id}>
                     <i className="far fa-trash-alt"></i>
                 </button>
                 <div id={this.id} className="modal">
@@ -33,8 +33,8 @@ class MRemove extends Component {
                         <p>Are you sure you want to delete this item?</p>
                     </div>
                     <div className="modal-footer">
-                        <button className="modal-close mbtn">Cancel</button>
-                        <button onClick={this.removeItem} className="mbtn del">Delete</button>
+                        <button aria-label="Cancel deleting of unmarked item" className="modal-close mbtn">Cancel</button>
+                        <button aria-label="Confirm deleting of unmarked item" onClick={this.removeItem} className="mbtn del">Delete</button>
                     </div>
                 </div>
             </div>
