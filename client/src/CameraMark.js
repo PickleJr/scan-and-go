@@ -69,14 +69,15 @@ class CameraMark extends Component {
     }
 
     componentDidMount() {
-        //Media queries?
+        //Default values
         let qHeight = 480;
         let qWidth = 640;
         let qRatio = qWidth / qHeight;
+
         let qTarget = document.querySelector('#scanner');
-        let wWidth = window.innerWidth;
+        let wWidth = qTarget.parentElement.clientWidth;
         if(wWidth < qWidth) {
-            qWidth = 160;
+            qWidth = wWidth;
             qHeight = qWidth * qRatio;
         }
         Quagga.init({
