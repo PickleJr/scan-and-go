@@ -4,14 +4,9 @@
 }
 
 #controls {
-    width: 640px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-}
-
-#controls > a, #controls > button {
-    width: 200px;
 }
 
 canvas.drawingBuffer {
