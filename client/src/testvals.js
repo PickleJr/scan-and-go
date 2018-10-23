@@ -1,3 +1,4 @@
+//Temporary object to act as a placeholder when troubleshooting localstorage
 export default {
     list: {
         unmarked: ['eggs', 'Apples', 'Oranges', 'Chicken', 'Pizza'],

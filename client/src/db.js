@@ -1,3 +1,8 @@
+/* This file is the localstorage for the app data. It saves the data for offline use
+ * This method seems complex, since it's using promises to store and retreive files.
+ * I wanted to use prmoises so the app is not caught up in errors and handles it accordingly
+ * without interupting the flow of the app.
+ */
 import idb from 'idb';
 
 const dbPromise = idb.open('data-store', 1, upgradeDB => {

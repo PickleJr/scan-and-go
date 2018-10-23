@@ -1,3 +1,5 @@
+/* This file is the page that is displayed when a user is capturing a barcode with their camera
+ */
 import React, { Component } from 'react';
 import Quagga from 'quagga';
 

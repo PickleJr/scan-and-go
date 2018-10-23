@@ -1,3 +1,7 @@
+/* This file is the footer for the app.
+ * It is simple and I am content with it, in the future I might look into making it so the footer
+ * does not move when a user opens their keyboard
+ */
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Footer.css';

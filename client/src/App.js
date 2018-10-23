@@ -1,3 +1,8 @@
+/* React.js elements/components are classes.
+ * This is the main, parent, class for the whole app.
+ * This class contains the state of the app, as well as the methods to control
+ * the app state.
+ */
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
@@ -34,10 +39,12 @@ class App extends Component {
         this.saveSetState = this.saveSetState.bind(this);
     }
 
+    //Ensure that the current state is the up to date state
     componentDidMount() {
         this.checkDb();
     }
 
+    //Ensure that the current state is the up to date state
     componentDidUpdate() {
         this.checkDb();
     }
@@ -52,6 +59,7 @@ class App extends Component {
         this.setState(newState);
     }
 
+    //Ensure that the current state is the up to date state
     async checkDb() {
         let isSame = true;
         //check if unmarked is the same
@@ -186,6 +194,7 @@ class App extends Component {
     }
 
     render() {
+        //Swith and Route determine what to display based on url
         return (
             <div className="App">
                 <Switch>
