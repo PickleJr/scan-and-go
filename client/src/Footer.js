@@ -34,6 +34,8 @@ class Footer extends Component {
             // keyboard NOT visible
             newState.style.display = 'block';
         }
+        console.log("New state!");
+        console.log(newState);
         this.setState(newState);
     }
 
