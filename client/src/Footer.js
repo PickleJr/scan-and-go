@@ -18,10 +18,13 @@ class Footer extends Component {
             landscapeScreenHeight: (isUpright) ? window.innerWidth : window.innerHeight
         };
         this.tolerance = 25;
+        console.log("This state is...");
+        console.log(this.state);
         this.footerToggler = this.footerToggler.bind(this);
     }
 
     footerToggler() {
+        console.log(this.state);
         let isUpright = window.orientation === 0 || window.orientation === 180;
         let newState = this.state;
         if(isUpright && ((window.innerHeight + this.tolerance) < this.state.portraitScreenHeight)) {
@@ -40,10 +43,7 @@ class Footer extends Component {
     }
 
     componentDidMount() {
-        console.log("Footer did mount!");
         let isMobile = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        console.log("Is mobile:");
-        console.log(isMobile);
         if(isMobile) {
             window.addEventListener('resize', this.footerToggler);
         }
