@@ -16,13 +16,10 @@ class Footer extends Component {
             landscapeScreenHeight: (isUpright) ? window.innerWidth : window.innerHeight
         };
         this.tolerance = 25;
-        console.log("This state is...");
-        console.log(this.state);
         this.footerToggler = this.footerToggler.bind(this);
     }
 
     footerToggler() {
-        console.log(this.state);
         let isUpright = window.orientation === 0 || window.orientation === 180;
         let newState = this.state;
         if(isUpright && ((window.innerHeight + this.tolerance) < this.state.portraitScreenHeight)) {
@@ -35,8 +32,6 @@ class Footer extends Component {
             // keyboard NOT visible
             newState.class = "";
         }
-        console.log("New state!");
-        console.log(newState);
         this.setState(newState);
     }
 
