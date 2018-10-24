@@ -18,6 +18,7 @@ class CameraMark extends Component {
         this.checkState = this.checkState.bind(this);
         this.pushSkip = this.pushSkip.bind(this);
         this.goBack = this.goBack.bind(this);
+        this.startQuagga = this.startQuagga.bind(this);
     }
 
     skipItem() {
@@ -73,7 +74,7 @@ class CameraMark extends Component {
         }
     }
 
-    componentDidMount() {
+    startQuagga() {
         //Default values
         let qHeight = 480;
         let qWidth = 640;
@@ -97,7 +98,6 @@ class CameraMark extends Component {
             qWidth = qHeight;
             qHeight = tmp;
         }
-
         Quagga.init({
             inputStream: {
                 name: 'Live',
@@ -122,6 +122,11 @@ class CameraMark extends Component {
             Quagga.start();
         });
         Quagga.onDetected(this.scanDetect);
+    }
+
+    componentDidMount() {
+
+        this.startQuagga(qTarget, qWidth, qHeight);
     }
     render() {
         let counter = this.state.counter;
