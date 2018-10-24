@@ -11,9 +11,7 @@ class Footer extends Component {
         super(props);
         let isUpright = window.orientation === 0 || window.orientation === 180;
         this.state = {
-            style: {
-                display: 'block'
-            },
+            class: "",
             portraitScreenHeight: (isUpright) ? window.innerHeight : window.innerWidth,
             landscapeScreenHeight: (isUpright) ? window.innerWidth : window.innerHeight
         };
@@ -29,13 +27,13 @@ class Footer extends Component {
         let newState = this.state;
         if(isUpright && ((window.innerHeight + this.tolerance) < this.state.portraitScreenHeight)) {
             // keyboard visible in portrait
-            newState.style.display = 'none';
+            newState.class = "hide"
         } else if((window.innerHeight + this.tolerance) < this.state.landscapeScreenHeight) {
             // keyboard visible in landscape
-            newState.style.display = 'none';
+            newState.class = "hide"
         } else {
             // keyboard NOT visible
-            newState.style.display = 'block';
+            newState.class = "";
         }
         console.log("New state!");
         console.log(newState);
@@ -58,7 +56,7 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer style={this.state.style}>
+            <footer className={this.state.class}>
                 <div className="container">
                     <div id="b-nav" className="row center">
                         <NavLink exact to='/' className="nav col s6">
