@@ -19,6 +19,7 @@ class CameraMark extends Component {
         this.pushSkip = this.pushSkip.bind(this);
         this.goBack = this.goBack.bind(this);
         this.startQuagga = this.startQuagga.bind(this);
+        this.restartQuagga = this.restartQuagga.bind(this);
     }
 
     skipItem() {
@@ -27,6 +28,7 @@ class CameraMark extends Component {
 
     componentWillUnmount() {
         Quagga.stop();
+        window.removeEventListener('orientationchange', this.restartQuagga);
     }
 
     pushSkip() {
@@ -124,9 +126,14 @@ class CameraMark extends Component {
         Quagga.onDetected(this.scanDetect);
     }
 
-    componentDidMount() {
+    restartQuagga() {
+        Quagga.stop();
+        this.startQuagga();
+    }
 
-        this.startQuagga(qTarget, qWidth, qHeight);
+    componentDidMount() {
+        this.startQuagga();
+        window.addEventListener('orientationchange', this.restartQuagga);
     }
     render() {
         let counter = this.state.counter;
