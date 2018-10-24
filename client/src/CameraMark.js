@@ -24,6 +24,10 @@ class CameraMark extends Component {
         this.setState({counter: {}}, this.pushSkip);
     }
 
+    componentWillUnmount() {
+        Quagga.stop();
+    }
+
     pushSkip() {
         let item = {
             hasCode: false,
@@ -40,7 +44,7 @@ class CameraMark extends Component {
 
         //Barcode not 100% acurate.
         //Count number of time each number is scanned.
-        //If a particular code is scanned 7 times it probably is the correct code.
+        //If a particular code is scanned 10 times it probably is the correct code.
         counter[code] = counter[code] || 0;
         counter[code]++;
         this.setState({counter: counter}, this.checkState);
@@ -54,7 +58,7 @@ class CameraMark extends Component {
     checkState() {
         let counter = this.state.counter;
         for(let num in counter) {
-            if(counter[num] > 6) {
+            if(counter[num] > 9) {
                 let item = {
                     hasCode: true,
                     code: num,
@@ -107,13 +111,26 @@ class CameraMark extends Component {
         Quagga.onDetected(this.scanDetect);
     }
     render() {
+        let counter = this.state.counter;
+        let percentage = 0;
+        let numWithMost;
+        for(let num in counter) {
+            if(typeof numWithMost === 'undefined'){ 
+                numWithMost = num;
+                continue;
+            }
+            if(counter[numWithMost] < counter[num]) numWithMost = num;
+        }
+        if(typeof numWithMost !== 'undefined') percentage = counter[numWithMost] * 10;
         return (
             <div>
+                <p className="flow-text center">Scan barcode of your item</p>
                 <div id="scanner"></div>
                 <div id="controls">
                     <button aria-label="Go back" onClick={this.goBack} className="waves-effect waves-light btn">
                         <i className="fas fa-long-arrow-alt-left"></i>
                     </button>
+                    <span id="percent">{percentage}%</span>
                     <button aria-label="Skip scanning of this item" onClick={this.skipItem} className="waves-effect waves-light btn">
                         Skip
                     </button>
