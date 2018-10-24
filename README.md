@@ -13,6 +13,4 @@ application on "localhost" - not just static files. To do that, either run `npm 
 
 ## FUTURE TODOS:
 * Provide user feedback in camera mode.
-* Create app manifest.
-* Create custom service worker.
-* Add to this list when anything else comes to mind.
+* Fix Camera when user alternates from portrait to landscape
