@@ -127,8 +127,7 @@ class CameraMark extends Component {
     }
 
     restartQuagga() {
-        Quagga.stop();
-        this.startQuagga();
+        window.location.reload();
     }
 
     componentDidMount() {
