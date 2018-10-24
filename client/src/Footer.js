@@ -40,13 +40,20 @@ class Footer extends Component {
     }
 
     componentDidMount() {
-        let isMobile = /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        if(isMobile) window.addEventListener('resize', this.footerToggler);
+        console.log("Footer did mount!");
+        let isMobile = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        console.log("Is mobile:");
+        console.log(isMobile);
+        if(isMobile) {
+            window.addEventListener('resize', this.footerToggler);
+        }
     }
 
     componentWillUnmount() {
         let isMobile = /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        if(isMobile) window.removeEventListener('resize', this.footerToggler);
+        if(isMobile) {
+            window.removeEventListener('resize', this.footerToggler);
+        }
     }
 
     render() {
