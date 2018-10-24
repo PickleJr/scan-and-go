@@ -19,5 +19,4 @@ application on "localhost" - not just static files. To do that, either...
 * run `npm build` from the root of the client folder and have your own server serve the generated files.
 
 ## FUTURE TODOS:
-* Provide user feedback in camera mode.
 * Fix Camera when user alternates from portrait to landscape

@@ -77,7 +77,7 @@ class CameraMark extends Component {
         //Default values
         let qHeight = 480;
         let qWidth = 640;
-        let qRatio = qHeight / qWidth;
+        let qRatio = qWidth / qHeight;
 
         let qTarget = document.querySelector('#scanner');
         let wWidth = qTarget.parentElement.clientWidth;
@@ -85,6 +85,19 @@ class CameraMark extends Component {
             qWidth = wWidth;
             qHeight = qWidth * qRatio;
         }
+
+        /* On android (not sure abuot IOS, I am unable to test on ios...), the Quaggar rotates
+         * the view port if the phone is in portrait mode. So I need to swap the height and width on android
+         * (again, not sure about ios...)
+         */
+        let isAndroid = /Android|webOS/i.test(navigator.userAgent);
+        let isUpright = window.orientation === 0 || window.orientation === 180;
+        if(isAndroid && isUpright) {
+            let tmp = qWidth;
+            qWidth = qHeight;
+            qHeight = tmp;
+        }
+
         Quagga.init({
             inputStream: {
                 name: 'Live',
