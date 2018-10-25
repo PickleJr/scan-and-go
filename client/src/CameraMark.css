@@ -9,6 +9,11 @@
     justify-content: space-between;
 }
 
+#percent {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
 canvas.drawingBuffer {
     display: none;
 }

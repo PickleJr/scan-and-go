@@ -1,0 +1,21 @@
+{
+  "name": "scan-and-go",
+  "description": "A progressive web app shopping list with barcode features",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
