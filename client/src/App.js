@@ -108,10 +108,16 @@ class App extends Component {
 
     toggleScanned(index) {
         let newState = this.state;
+        console.log("Is index in range...");
+        console.log(index < 0 || index >= newState.list.marked.length);
+        console.log("Does index have code ...");
+        console.log(!newState.list.marked[index].hasCode);
         if(index < 0 || index >= newState.list.marked.length) return;
         else if(!newState.list.marked[index].hasCode) return;
 
         newState.list.marked[index].scanned = !newState.list.marked[index].scanned;
+        console.log("New State is...");
+        console.log(newState);
         this.saveSetState(newState);
     }
 
