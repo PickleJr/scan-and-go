@@ -1,3 +1,9 @@
+/* This is essentailly the index page for the app.
+ * It is essentailly separated into three sections:
+ * 1. The section where the user will input an item
+ * 2. The section that displays the list of items that are not marked as complete
+ * 3. The section that displays the list of items that are marked as complete
+ */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';

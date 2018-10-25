@@ -1,3 +1,8 @@
+/* This file displays all the items that are marked as "complete".
+ * First it displays all the item with the barcode, as well as a button that will conditionally show up to
+ * remove all items if they're marked as good.
+ * Secondly, display all items without barcodes, and provide a button to delete all of those
+ */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import JsBarcode from 'jsbarcode';

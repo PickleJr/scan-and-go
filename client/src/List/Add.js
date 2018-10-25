@@ -1,3 +1,6 @@
+/* This is the "Add" section of the input page. This handles the user input and updating the apps
+ * state with the new inputs
+ */
 import React, { Component } from 'react';
 
 import './Add.css';

@@ -1,3 +1,5 @@
+/* This is the component that handles the deleting of unmarked items
+ */
 import React, { Component } from 'react';
 import M from 'materialize-css';
 

@@ -1,3 +1,11 @@
+/* This file is part of the checkout process. This component is responsible for displaying the
+ * individual barcode. It displays 5 things.
+ * 1. The barcode itself, the barcode to be scanned
+ * 2. A back button, to go back to the previous barcode, or the previous page
+ * 3. A skip button, to go to the next barcode but not mark this barcode as "good"
+ * 4. A next button, to mark this barcode as good and go the next barcode
+ * 5. A mark not scanned button, to mark a scanned item as not scanned; to undo
+ */
 import React, { Component } from 'react';
 import JsBarcode from 'jsbarcode';
 
