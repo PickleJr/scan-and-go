@@ -42,7 +42,7 @@ class Barcode extends Component {
         );
     }
 
-    goNext(event) {
+    async goNext(event) {
         let index = this.props.match.params.iIndex;
         let list = this.props.list;
         console.log("Target name is..." + event.target.name);
