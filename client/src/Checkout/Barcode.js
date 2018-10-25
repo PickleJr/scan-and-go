@@ -45,7 +45,7 @@ class Barcode extends Component {
     goNext(event) {
         let index = this.props.match.params.iIndex;
         let list = this.props.list;
-        if(event.target.name === "nexter" && !list[index].scanned) this.props.toggler(index);
+        if(event.target.getAttribute("name") === "nexter" && !list[index].scanned) this.props.toggler(index);
 
         ++index;
         while(index >= 0 && index < list.length) {

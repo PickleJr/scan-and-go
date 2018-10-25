@@ -32,9 +32,15 @@ class CameraMark extends Component {
     }
 
     pushSkip() {
+        let name = this.props.match.params.item;
+        let web = name.trim();
+        web = web.replace(/\s/gi, '-');
+        web = web.replace(/[^\w\d]/gi, '');
+        web = web.replace(/^\d/, '');
         let item = {
             hasCode: false,
-            name: this.props.match.params.item
+            name: name,
+            web: web,
         };
         this.props.marker(item);
         Quagga.stop();
@@ -62,11 +68,17 @@ class CameraMark extends Component {
         let counter = this.state.counter;
         for(let num in counter) {
             if(counter[num] > 9) {
+                let name = this.props.match.params.item;
+                let web = name.trim();
+                web = web.replace(/\s/gi, '-');
+                web = web.replace(/[^\w\d]/gi, '');
+                web = web.replace(/^\d/, '');
                 let item = {
                     hasCode: true,
                     code: num,
                     scanned: false,
-                    name: this.props.match.params.item
+                    name: name,
+                    web: web
                 };
                 this.props.marker(item);
                 Quagga.stop();

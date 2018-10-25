@@ -68,10 +68,13 @@ class App extends Component {
         if(unmarked.length !== this.state.list.unmarked.length) isSame = false;
         else 
             for(let i = 0; i < unmarked.length; i++) {
-                if(unmarked[i] !== this.state.list.unmarked[i]) {
-                    isSame = false;
-                    break;
+                for(let key in unmarked[i]) {
+                    if(unmarked[i][key] !== this.state.list.unmarked[i][key]) {
+                        isSame = false;
+                        break;
+                    }
                 }
+                if(!isSame) break;
             }
 
         //check if marked is the same
@@ -85,7 +88,7 @@ class App extends Component {
                         isSame = false;
                         break;
                     } else {
-                        if(marked[key] !== this.state.list.marked[key]) {
+                        if(marked[i][key] !== this.state.list.marked[i][key]) {
                             isSame = false;
                             break;
                         }
@@ -116,7 +119,6 @@ class App extends Component {
         let newState = this.state;
         for(let i = 0; i < newState.list.marked.length; i++) {
             if(!newState.list.marked[i].hasCode) {
-                console.log(newState.list.marked);
                 newState.list.marked.splice(i--, 1);
             }
         }
@@ -134,17 +136,35 @@ class App extends Component {
     }
 
     addUnmarkedItem(item) {
+        //Check for space and fix space issue
+        let web = item.trim();
+        web = web.replace(/\s/gi, '-');
+        web = web.replace(/[^\w\d]/gi, '');
+        web = web.replace(/^\d/, '');
+        item = {
+            name: item,
+            web: web
+        }
         let newState = this.state;
         newState.list.unmarked.unshift(item);
         this.saveSetState(newState);
     }
 
     markUncomplete(item) {
+        //Check for space and fix space issue
+        let web = item.name.trim();
+        web = web.replace(/\s/gi, '-');
+        web = web.replace(/[^\w\d]/gi, '');
+        web = web.replace(/^\d/, '');
+        item = {
+            name: item.name,
+            web: web
+        }
         let unmarked = this.state.list.unmarked;
         let marked = this.state.list.marked;
-        unmarked.push(item.name);
+        unmarked.push(item);
         for(let i = 0; i < marked.length; i++) {
-            if(marked[i] === item) {
+            if(marked[i].name === item.name) {
                 marked.splice(i, 1);
                 break;
             }
@@ -160,7 +180,7 @@ class App extends Component {
         let marked = this.state.list.marked;
         marked.unshift(item);
         for(let i = 0; i < unmarked.length; i++) {
-            if(unmarked[i] === item.name) {
+            if(unmarked[i].name === item.name) {
                 unmarked.splice(i, 1);
                 break;
             }
@@ -185,7 +205,7 @@ class App extends Component {
     removeUnmarkedItem(item) {
         let newState = this.state;
         for(let i = 0; i < newState.list.unmarked.length; i++) {
-            if(newState.list.unmarked[i] === item) {
+            if(newState.list.unmarked[i].name === item.name) {
                 newState.list.unmarked.splice(i, 1);
                 this.saveSetState(newState);
                 break;

@@ -48,10 +48,10 @@ class List extends Component {
             html.push((
                 <li key={i.toString()} className="collection-item">
                     <div>
-                        <span>{unmarked[i]}</span>
+                        <span>{unmarked[i].name}</span>
                         <div className="item-actions">
                             <URemove remover={this.props.uRemover} item={unmarked[i]} indexKey={i}/>
-                            <Link to={"/camera-mark/" + unmarked[i]}>
+                            <Link to={"/camera-mark/" + unmarked[i].name}>
                                 <i className="far fa-square"></i>
                             </Link>
                         </div>

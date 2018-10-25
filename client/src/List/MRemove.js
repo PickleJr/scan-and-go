@@ -8,7 +8,7 @@ import './Remove.css';
 class MRemove extends Component {
     constructor(props) {
         super(props);
-        this.id = "mmodal-" + this.props.item.name + "-" + this.props.indexKey;
+        this.id = "mmodal-" + this.props.item.web + "-" + this.props.indexKey;
 
         this.removeItem = this.removeItem.bind(this);
     }

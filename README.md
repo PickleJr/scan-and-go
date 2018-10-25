@@ -5,7 +5,7 @@ This app is still in the development phase.
 
 Running this app or building this app on your own computer assumes you have NPM installed.
 
-This app is essentially two apps in one. There's a server, which will host the code when hosted on a website, and a client which is the main part of the application.
+This app is essentially two apps in one. There's a server, which will host the code when hosted on a website, and a client, which is the main part of the application.
 
 To install dependencies for the server, run `npm install` from the root of app.
 To install dependencies for the front end, run `npm install` from the root of the client folder.
