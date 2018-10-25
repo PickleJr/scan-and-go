@@ -106,13 +106,13 @@ class App extends Component {
         }
     }
 
-    toggleScanned(index) {
+    async toggleScanned(index) {
         let newState = this.state;
         if(index < 0 || index >= newState.list.marked.length) return;
         else if(!newState.list.marked[index].hasCode) return;
 
         newState.list.marked[index].scanned = !newState.list.marked[index].scanned;
-        this.saveSetState(newState);
+        await this.saveSetState(newState);
     }
 
     clearMarkedNoBarcode() {

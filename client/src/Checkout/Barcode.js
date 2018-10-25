@@ -42,10 +42,14 @@ class Barcode extends Component {
         );
     }
 
-    goNext(event) {
+    async goNext(event) {
         let index = this.props.match.params.iIndex;
         let list = this.props.list;
-        if(event.target.name === "nexter" && !list[index].scanned) this.props.toggler(index);
+        if(event.target.name === "nexter" && !list[index].scanned) {
+            console.log("Item should be toggled!");
+            await this.props.toggler(index)
+            console.log("Item was toggled!");
+        };
 
         ++index;
         while(index >= 0 && index < list.length) {
