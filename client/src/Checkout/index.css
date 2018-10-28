@@ -6,6 +6,11 @@
 .flexy-checkout > * {
     margin: 5px 15px;
 }
+@media only screen and (max-width: 600px) {
+    .flexy-checkout > * {
+        width: 100%;
+    }
+}
 
 .code-holder {
     border: 4px solid white;
