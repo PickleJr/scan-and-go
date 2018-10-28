@@ -11,6 +11,11 @@ import JsBarcode from 'jsbarcode';
 
 import './Barcode.css';
 
+const action = {
+    next: 'nexter',
+    skip: 'skipper',
+};
+
 class Barcode extends Component {
     constructor(props) {
         super(props);
@@ -42,10 +47,10 @@ class Barcode extends Component {
         );
     }
 
-    goNext(event) {
+    goNext(mode) {
         let index = this.props.match.params.iIndex;
         let list = this.props.list;
-        if(event.target.getAttribute("name") === "nexter" && !list[index].scanned) this.props.toggler(index);
+        if(action.next === mode && !list[index].scanned) this.props.toggler(index);
 
         ++index;
         while(index >= 0 && index < list.length) {
@@ -119,10 +124,10 @@ class Barcode extends Component {
                             <button aria-label="Go back to previous item" onClick={this.goBack} className="col s3 m2 waves-effect waves-light btn red ich">
                                 <i className="fas fa-chevron-left"></i> <span>Back</span>
                             </button>
-                            <button aria-label="Skip this item" onClick={this.goNext} name="skipper" className="col s2 offset-s2 offset-m3 waves-effect waves-light btn orange darken-1">
+                            <button aria-label="Skip this item" onClick={() => this.goNext(action.skip)} name={action.skip} className="col s2 offset-s2 offset-m3 waves-effect waves-light btn orange darken-1">
                                 Skip
                             </button>
-                            <button aria-label="Mark item as complete and go to the next item" onClick={this.goNext} name="nexter" className="col s3  m2 offset-s2 offset-m3 waves-effect waves-light btn ich">
+                            <button aria-label="Mark item as complete and go to the next item" onClick={() => this.goNext(action.next)} name={action.next} className="col s3  m2 offset-s2 offset-m3 waves-effect waves-light btn ich">
                                 <span>Next</span> <i className="fas fa-chevron-right"></i>
                             </button>
                         </div>
